@@ -1,6 +1,5 @@
-package com.slailati.feature.search_vehicle.presentation.experimental
+package com.dev.slailati.compose_academy_starter_pack.ui.components
 
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -40,8 +39,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.slailati.core.ui.R
-import com.slailati.ui.theme.typography.outfitFontFamily
+import com.dev.slailati.compose_academy_starter_pack.R
+import com.dev.slailati.compose_academy_starter_pack.ui.theme.ComposeAcademyStarterPackTheme
+import com.dev.slailati.compose_academy_starter_pack.ui.theme.outfitFontFamily
 
 sealed class CardFace(val angle: Float) {
     object Front : CardFace(angle = 0f)
@@ -66,10 +66,7 @@ fun FlipCreditCardItem(
 ) {
     val rotation = animateFloatAsState(
         targetValue = cardFace.angle,
-        animationSpec = tween(
-            durationMillis = 800,
-            easing = FastOutSlowInEasing,
-        ),
+        animationSpec = tween(durationMillis = 800),
         label = "Card Rotation"
     )
 
@@ -149,7 +146,7 @@ fun MasterCardBlackFront() {
                     contentDescription = null
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Master Card", color = Color.White, fontFamily = outfitFontFamily)
+                Text(text = "Master Card", color = Color.White)
             }
             Image(
                 modifier = Modifier.size(36.dp),
@@ -162,7 +159,6 @@ fun MasterCardBlackFront() {
             Text(
                 text = "Número do Cartão",
                 color = Color.White,
-                fontFamily = outfitFontFamily,
                 fontSize = 14.sp
             )
             Text(
@@ -179,19 +175,17 @@ fun MasterCardBlackFront() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "BERNARDO M SLAILATI", color = Color.White, fontFamily = outfitFontFamily)
+            Text(text = "BERNARDO M SLAILATI", color = Color.White)
             Column(horizontalAlignment = Alignment.End) {
                 Text(
                     text = "Validade",
                     color = Color.White,
-                    fontFamily = outfitFontFamily,
                     fontSize = 12.sp
                 )
                 Text(
                     text = "05/28",
                     fontSize = 14.sp,
-                    color = Color.White,
-                    fontFamily = outfitFontFamily
+                    color = Color.White
                 )
             }
         }
@@ -204,7 +198,6 @@ fun MasterCardBlackBack() {
         modifier = Modifier
             .background(
                 brush = Brush.linearGradient(
-                    tileMode = TileMode.Mirror,
                     colors = listOf(
                         Color.Black,
                         Color.DarkGray
@@ -247,13 +240,11 @@ fun MasterCardBlackBack() {
             Text(
                 text = "Número do Cartão",
                 color = Color.White,
-                fontFamily = outfitFontFamily,
                 fontSize = 14.sp
             )
             Text(
                 text = "8050 5040 2030 3020",
                 color = Color.White,
-                fontFamily = outfitFontFamily,
                 fontSize = 16.sp,
                 letterSpacing = 4.sp
             )
@@ -268,27 +259,23 @@ fun MasterCardBlackBack() {
                 Text(
                     text = "Validade",
                     color = Color.White,
-                    fontFamily = outfitFontFamily,
                     fontSize = 12.sp
                 )
                 Text(
                     text = "05/28",
                     fontSize = 18.sp,
                     color = Color.White,
-                    fontFamily = outfitFontFamily
                 )
             }
             Column {
                 Text(
                     text = "CVV",
                     color = Color.White,
-                    fontFamily = outfitFontFamily,
                     fontSize = 12.sp
                 )
                 Text(
                     text = "512",
                     color = Color.White,
-                    fontFamily = outfitFontFamily,
                     fontWeight = FontWeight.SemiBold,
                     letterSpacing = 4.sp,
                     fontSize = 18.sp
@@ -357,7 +344,7 @@ fun MasterCardBlack() {
 @Preview
 @Composable
 fun PreviewFlipCreditCardBack() {
-    MaterialTheme {
+    ComposeAcademyStarterPackTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             MasterCardBlack()
         }

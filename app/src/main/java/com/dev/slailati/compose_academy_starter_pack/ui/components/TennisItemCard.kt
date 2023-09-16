@@ -1,4 +1,4 @@
-package com.slailati.feature.search_vehicle.presentation.experimental
+package com.dev.slailati.compose_academy_starter_pack.ui.components
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -33,9 +33,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.slailati.core.ui.R
-import com.slailati.ui.extension.clickableWithoutRipple
-import com.slailati.ui.extension.shimmer
+import com.dev.slailati.compose_academy_starter_pack.R
+import com.dev.slailati.compose_academy_starter_pack.ui.extension.clickableWithoutRipple
+import com.dev.slailati.compose_academy_starter_pack.ui.extension.shimmer
 import kotlinx.coroutines.delay
 
 @Composable

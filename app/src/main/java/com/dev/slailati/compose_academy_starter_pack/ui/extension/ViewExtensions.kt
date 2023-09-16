@@ -1,17 +1,12 @@
-package com.slailati.feature.search_vehicle.presentation.experimental
+package com.dev.slailati.compose_academy_starter_pack.ui.extension
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.DrawableRes
-import androidx.compose.material3.AlertDialog
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
 

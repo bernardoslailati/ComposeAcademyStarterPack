@@ -1,9 +1,9 @@
-package com.slailati.feature.search_vehicle.presentation.experimental
+package com.dev.slailati.compose_academy_starter_pack.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandIn
 import androidx.compose.animation.expandVertically
@@ -60,8 +60,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.slailati.core.ui.R
-import com.slailati.ui.theme.typography.outfitFontFamily
+import com.dev.slailati.compose_academy_starter_pack.R
+import com.dev.slailati.compose_academy_starter_pack.ui.theme.outfitFontFamily
 import kotlinx.coroutines.delay
 
 val catMarioAnimatedVisibilityConfigList = listOf(
