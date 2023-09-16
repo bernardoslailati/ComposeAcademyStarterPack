@@ -1,5 +1,7 @@
 package com.dev.slailati.compose_academy_starter_pack.ui.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -36,6 +39,7 @@ import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -155,20 +159,14 @@ fun MasterCardBlackFront() {
             )
         }
         Spacer(modifier = Modifier.height(24.dp))
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = "Número do Cartão",
-                color = Color.White,
-                fontSize = 14.sp
-            )
-            Text(
-                text = "8050 5040 2030 3020",
-                color = Color.White,
-                fontFamily = outfitFontFamily,
-                fontSize = 18.sp,
-                letterSpacing = 4.sp
-            )
-        }
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "8050 5040 2030 3020",
+            textAlign = TextAlign.Center,
+            color = Color.White,
+            fontSize = 16.sp,
+            letterSpacing = 6.sp
+        )
         Spacer(modifier = Modifier.height(24.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -217,7 +215,6 @@ fun MasterCardBlackBack() {
                 )
                 drawCircle(
                     brush = Brush.linearGradient(
-                        tileMode = TileMode.Mirror,
                         colors = listOf(
                             Color.Black.copy(alpha = 0.4f),
                             Color.Gray.copy(alpha = 0.2f)
@@ -236,19 +233,14 @@ fun MasterCardBlackBack() {
             contentDescription = null
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = "Número do Cartão",
-                color = Color.White,
-                fontSize = 14.sp
-            )
-            Text(
-                text = "8050 5040 2030 3020",
-                color = Color.White,
-                fontSize = 16.sp,
-                letterSpacing = 4.sp
-            )
-        }
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "8050 5040 2030 3020",
+            textAlign = TextAlign.Center,
+            color = Color.White,
+            fontSize = 16.sp,
+            letterSpacing = 6.sp
+        )
         Spacer(modifier = Modifier.height(24.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -290,37 +282,10 @@ fun MasterCardBlackBack() {
     }
 }
 
-@Preview
 @Composable
-fun PreviewFlipCreditCardFront() {
-    MaterialTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            var state: CardFace by remember { mutableStateOf(CardFace.Front) }
-
-            FlipCreditCardItem(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .heightIn(min = 200.dp)
-                    .padding(vertical = 36.dp, horizontal = 16.dp),
-                cardFace = state,
-                onClick = {
-                    state = it.flip()
-                },
-                front = {
-                    MasterCardBlackFront()
-                },
-                back = {
-                    MasterCardBlackBack()
-                }
-            )
-        }
-    }
-}
-
-@Composable
-fun MasterCardBlack() {
+fun MasterCardBlack(initialCardFace: CardFace = CardFace.Front) {
     var state: CardFace by remember {
-        mutableStateOf(CardFace.Back)
+        mutableStateOf(initialCardFace)
     }
 
     FlipCreditCardItem(
@@ -343,9 +308,25 @@ fun MasterCardBlack() {
 
 @Preview
 @Composable
+fun PreviewFlipCreditCardFront() {
+    ComposeAcademyStarterPackTheme {
+        MasterCardBlack()
+    }
+}
+
+@Preview
+@Composable
 fun PreviewFlipCreditCardBack() {
     ComposeAcademyStarterPackTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
+        MasterCardBlack(initialCardFace = CardFace.Back)
+    }
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun PreviewMasterCardBlackFlipping() {
+    ComposeAcademyStarterPackTheme {
+        Column {
             MasterCardBlack()
         }
     }
