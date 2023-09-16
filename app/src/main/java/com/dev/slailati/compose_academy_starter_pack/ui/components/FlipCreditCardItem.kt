@@ -180,6 +180,7 @@ fun MasterCardBlackFront() {
                     color = Color.White,
                     fontSize = 12.sp
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "05/28",
                     fontSize = 14.sp,
@@ -253,6 +254,7 @@ fun MasterCardBlackBack() {
                     color = Color.White,
                     fontSize = 12.sp
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "05/28",
                     fontSize = 18.sp,
@@ -265,6 +267,7 @@ fun MasterCardBlackBack() {
                     color = Color.White,
                     fontSize = 12.sp
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "512",
                     color = Color.White,
