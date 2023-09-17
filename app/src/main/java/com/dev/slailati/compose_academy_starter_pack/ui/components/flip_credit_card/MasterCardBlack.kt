@@ -1,27 +1,17 @@
-package com.dev.slailati.compose_academy_starter_pack.ui.components
+package com.dev.slailati.compose_academy_starter_pack.ui.components.flip_credit_card
 
-import android.content.res.Configuration.UI_MODE_NIGHT_NO
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,7 +26,6 @@ import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,59 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dev.slailati.compose_academy_starter_pack.R
 import com.dev.slailati.compose_academy_starter_pack.ui.theme.ComposeAcademyStarterPackTheme
-import com.dev.slailati.compose_academy_starter_pack.ui.theme.outfitFontFamily
-
-sealed class CardFace(val angle: Float) {
-    object Front : CardFace(angle = 0f)
-    object Back : CardFace(angle = 180f)
-
-    fun flip(): CardFace {
-        return when (this) {
-            is Back -> Front
-            is Front -> Back
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FlipCreditCardItem(
-    modifier: Modifier = Modifier,
-    cardFace: CardFace,
-    onClick: (currentCardFace: CardFace) -> Unit,
-    front: @Composable () -> Unit = {},
-    back: @Composable () -> Unit = {},
-) {
-    val rotation = animateFloatAsState(
-        targetValue = cardFace.angle,
-        animationSpec = tween(durationMillis = 800),
-        label = "Card Rotation"
-    )
-
-    Card(
-        onClick = { onClick(cardFace) },
-        modifier = modifier
-            .graphicsLayer {
-                rotationY = rotation.value
-                cameraDistance = 12f * density
-            },
-    ) {
-        if (rotation.value <= 90f) {
-            Box {
-                front()
-            }
-        } else {
-            Box(
-                modifier = Modifier
-                    .graphicsLayer {
-                        rotationY = 180f
-                    },
-            ) {
-                back()
-            }
-        }
-    }
-}
 
 @Composable
 fun MasterCardBlackFront() {
@@ -291,7 +227,7 @@ fun MasterCardBlack(initialCardFace: CardFace = CardFace.Front) {
         mutableStateOf(initialCardFace)
     }
 
-    FlipCreditCardItem(
+    FlipCardItem(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 200.dp)
@@ -322,15 +258,5 @@ fun PreviewFlipCreditCardFront() {
 fun PreviewFlipCreditCardBack() {
     ComposeAcademyStarterPackTheme {
         MasterCardBlack(initialCardFace = CardFace.Back)
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun PreviewMasterCardBlackFlipping() {
-    ComposeAcademyStarterPackTheme {
-        Column {
-            MasterCardBlack()
-        }
     }
 }
