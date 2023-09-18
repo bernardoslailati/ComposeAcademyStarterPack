@@ -1,5 +1,5 @@
 # Compose Academy - StarterPack
-## Aprendendo tudo o que o Compose é capaz de entregar!
+### Aprendendo tudo o que um iniciante precisa saber, para entender o Compose é capaz de entregar!
 
 Esse projeto contempla códigos contemplando:
 
